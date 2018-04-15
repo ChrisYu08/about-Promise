@@ -12,12 +12,12 @@
             this.status='pending';
             this.msg='';
             var that=this;
-            fn(function(fn1){
+            fn(function(value1){
                 that.status='resolve';
-                that.msg=fn1
-            },function(fn2){
+                that.msg=value1
+            },function(value2){
                 that.status='reject';
-                that.msg=fn2
+                that.msg=value2
             })
             return this;
         }
