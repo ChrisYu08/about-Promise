@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    function PromiseM(fn){
+            this.status='pending';
+            this.msg='';
+            var that=this;
+            fn(function(fn1){
+                that.status='resolve';
+                that.msg=fn1
+            },function(fn2){
+                that.status='reject';
+                that.msg=fn2
+            })
+            return this;
+        }
+        PromiseM.prototype.then=function(res,rej){
+            if(this.status=='resolve'){
+                res(this.msg)
+            }
+            if(this.status=='reject'&&rej){
+               rej(this.msg);
+            }
+        }
+    //此种resolve和reject不能直走一个（有点问题）    
+    </script>
+</body>
+</html>
