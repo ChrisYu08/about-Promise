@@ -28,8 +28,15 @@
             if(this.status=='reject'&&rej){
                rej(this.msg);
             }
+            return this
         }
-    //此种resolve和reject不能直走一个（有点问题）    
+        PromiseM.prototype.catch=function(rej){
+            if(this.status=='reject'){
+               rej(this.msg);
+            }
+        }
+
+    //此种resolve和reject不能只走一个（有点问题需要改进，正常的promise是resolve和reject只能走第一个，要么成功要么失败）    
     </script>
 </body>
 </html>
