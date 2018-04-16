@@ -8,46 +8,26 @@
 </head>
 <body>
 <script>
-    // 计算index
-    function binarySearch(list, key) {
-        var left = 0;
-        var right = list.length - 1;
-        var mid;
-        var result = 0;
 
-        // 只有一个数字
-        if (left == right) {
-            if (list[0] > key) {
-                return 2;
-            } else {
-                return 1;
+    function search(arr,num) {
+            var l=arr.length;
+            var left=0;
+            var right=l-1;
+            var center=Math.floor((left+right)/2);
+            while(left<=l-1&&right>=0){
+                if (arr[center]==num) return center;
+                if (left==right) return "您查找的数不存在";
+                if (arr[center]>num) {
+                    right=center-1;
+                    center=Math.floor((left+right)/2);
+                }else if (arr[center]<num) {
+                    left=center+1;
+                    center=Math.floor((left+right)/2);
+                }
             }
         }
-        while (left <= right) {
-            mid = parseInt((left + right) / 2);
-            if (list[mid] > key) {
-                left = mid + 1;
-                if (left > right) {
-                    result = mid + 1;
-                    break;
-                }
-            } else if (list[mid] < key) {
-                right = mid - 1;
-                if (left > right) {
-                    result = mid;
-                    break;
-                }
-            } else {
-                result = mid;
-                break;
-            }
-        }
-        // 返回index
-        return -1;
-    };
-    var list = [1, 3, 5, 7, 9];
-    var key = 3;
-    console.log(binarySearch(list, key));
+        var a=[1,2,3,4,5,6,7,8,9];
+        console.log(search(a,5));
 </script>
 </body>
 </html>
